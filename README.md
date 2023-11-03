@@ -1,1 +1,1 @@
-# Senior-Project---Earthquake-Prediction
+# Senior-Project-Earthquake-Prediction
