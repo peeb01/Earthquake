@@ -1,5 +1,5 @@
 # Earthquake dataset: 
-Earthquake Location dateset at [ 2023-10-02 ].
+Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
 #### from:
 - https://earthquake.usgs.gov/earthquakes/search/
 
