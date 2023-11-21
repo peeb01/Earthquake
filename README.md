@@ -1,5 +1,6 @@
 # Earthquake dataset: 
-search from [ 2023-10-02 ]
+Earthquake Location dateset at [ 2023-10-02 ].
+from:
 - https://earthquake.usgs.gov/earthquakes/search/
 
 #### Earthquake column name:
@@ -9,8 +10,9 @@ search from [ 2023-10-02 ]
 
 # NEOs dataset:
 The dataset all Near-Earth Object moving closer to the earth from [ 1950 to 2050 ].
-
+from:
 - https://cneos.jpl.nasa.gov/ca/
+
 - using APIs:
 - https://ssd-api.jpl.nasa.gov/cad.api?dist-max=10LD&date-min=1950-01-01&date-max=2050-01-01&sort=dist
 
