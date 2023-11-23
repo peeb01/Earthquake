@@ -15,7 +15,7 @@ neo['cd'] = neo['cd'].dt.strftime("%Y-%m-%d %H:%M")
 
 ndt = df[['time','latitude','longitude','mag','depth']]
 # at Thailand   ---(ndt['mag']>=3) &
-ndt = ndt[(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
+ndt = ndt[(ndt['mag']>=5) & (ndt['latitude']<= 30.449) &(ndt['latitude']>=-15.284) & (ndt['longitude']>=80.97) & (ndt['longitude']<=156.797)]
 
 ndt['time'] = pd.to_datetime(ndt['time'])
 
@@ -31,9 +31,9 @@ ax = fig.add_subplot(projection='3d')
 
 ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
 
-ax.set_xlabel('Latitude')
-ax.set_ylabel('Year')
-ax.set_zlabel('Longitude')
+ax.set_xlabel('Longitude')
+ax.set_ylabel('Time')  
+ax.set_zlabel('Latitude')
 
 
 ax.set_yticks(equally_spaced_years)
