@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-
+import numpy as np
 
 df = pd.read_csv('D:\Project\Senior-Project-Earthquake-Prediction\DataSet\DATASET.csv')
 df['time'] = pd.to_datetime(df['time'], errors='coerce')
@@ -17,20 +17,26 @@ ndt = df[['time','latitude','longitude','mag','depth']]
 # at Thailand   ---(ndt['mag']>=3) &
 ndt = ndt[(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
 
-
 ndt['time'] = pd.to_datetime(ndt['time'])
+
+
+min_year = ndt['time'].dt.year.min()
+max_year = ndt['time'].dt.year.max()
+equally_spaced_years = np.linspace(min_year, max_year, max_year - min_year + 1)
+
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
-formatted_time = ndt['time'].dt.strftime('%Y')
 
-ax.scatter(ndt['longitude'], ndt['time'].astype('int64'), ndt['latitude'], marker='o')
+ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
+
 ax.set_xlabel('Latitude')
-ax.set_ylabel('Time')  
+ax.set_ylabel('Year')
 ax.set_zlabel('Longitude')
 
 
-ax.set_yticklabels(formatted_time)
+ax.set_yticks(equally_spaced_years)
+ax.set_yticklabels([str(int(year)) for year in equally_spaced_years])
 
 plt.show()
