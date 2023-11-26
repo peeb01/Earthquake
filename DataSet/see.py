@@ -34,7 +34,7 @@ fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
 
-ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
+ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='^')
 
 ax.set_xlabel('Longitude')
 ax.set_ylabel('Time')  
