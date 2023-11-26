@@ -1,3 +1,6 @@
+#Updates
+
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -17,6 +20,8 @@ ndt = df[['time','latitude','longitude','mag','depth']]
 # at Thailand   ---(ndt['mag']>=3) &
 #ndt = ndt[(ndt['mag']>=6) & (ndt['latitude']<= 30.449) &(ndt['latitude']>=-15.284) & (ndt['longitude']>=80.97) & (ndt['longitude']<=156.797)]
 ndt = ndt[(ndt['mag']>=4) &(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
+
+
 ndt['time'] = pd.to_datetime(ndt['time'])
 
 
@@ -29,7 +34,7 @@ fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 
 
-ax.plot(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
+ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
 
 ax.set_xlabel('Longitude')
 ax.set_ylabel('Time')  
