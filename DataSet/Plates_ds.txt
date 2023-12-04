@@ -1,0 +1,88 @@
+แผ่นยูเรเชีย (Eurasian Plate)
+
+Latitude: 20°N to 70°N
+Longitude: -25°E to 170°E
+
+
+แผ่นแปซิฟิก (Pacific Plate)
+
+Latitude: -55°S to 85°N
+Longitude: 120°E to -120°W
+
+
+แผ่นออสเตรเลีย (Australian Plate)
+
+Latitude: -50°S to 10°S
+Longitude: 110°E to 160°E
+
+
+แผ่นฟิลิปปินส์ (Philippines Plate)
+
+Latitude: 5°N to 20°N
+Longitude: 115°E to 125°E
+
+
+แผ่นอเมริกาเหนือ (North American Plate)
+
+Latitude: 5°N to 80°N
+Longitude: -175°W to -15°W
+
+
+แผ่นอเมริกาใต้ (South American Plate)
+
+Latitude: -60°S to 12°N
+Longitude: -85°W to -30°W
+
+
+แผ่นสโกเชีย (Scotia Plate)
+
+Latitude: -80°S to -50°S
+Longitude: -100°W to -30°W
+
+
+แผ่นแอฟริกา (African Plate)
+
+Latitude: -35°S to 37°N
+Longitude: -25°W to 55°E
+
+
+แผ่นแอนตาร์กติก (Antarctic Plate)
+
+Latitude: -90°S to -60°S
+Longitude: -180° to 180°
+
+
+แผ่นนัซกา (Nazca Plate)
+
+Latitude: -30°S to 10°S
+Longitude: -80°W to -60°W
+
+
+แผ่นโคโคส (Cocos Plate)
+
+Latitude: 5°N to 20°N
+Longitude: -90°W to -70°W
+
+
+แผ่นแคริบเบียน (Caribbean Plate)
+
+Latitude: 5°N to 25°N
+Longitude: -90°W to -60°W
+
+
+แผ่นอินเดีย (Indian Plate)
+
+Latitude: -40°S to 30°N
+Longitude: 40°E to 110°E
+
+
+แผ่นฮวนเดฟูกา (Juan de Fuca Plate)
+
+Latitude: 40°N to 60°N
+Longitude: -130°W to -110°W
+
+
+แผ่นอาหรับ (Arabian Plate)
+
+Latitude: -20°S to 30°N
+Longitude: 25°E to 60°E
