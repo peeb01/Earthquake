@@ -18,8 +18,8 @@ neo['cd'] = neo['cd'].dt.strftime("%Y-%m-%d %H:%M")
 
 ndt = df[['time','latitude','longitude','mag','depth']]
 # at Thailand   ---(ndt['mag']>=3) &
-#ndt = ndt[(ndt['mag']>=6) & (ndt['latitude']<= 30.449) &(ndt['latitude']>=-15.284) & (ndt['longitude']>=80.97) & (ndt['longitude']<=156.797)]
-ndt = ndt[(ndt['mag']>=4) &(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
+ndt = ndt[(ndt['mag']>=2) & (ndt['latitude']<= 30.449) &(ndt['latitude']>=-15.284) & (ndt['longitude']>=80.97) & (ndt['longitude']<=156.797)]
+# ndt = ndt[(ndt['mag']>=4) &(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
 
 
 ndt['time'] = pd.to_datetime(ndt['time'])
@@ -43,5 +43,6 @@ ax.set_zlabel('Latitude')
 
 ax.set_yticks(equally_spaced_years)
 ax.set_yticklabels([str(int(year)) for year in equally_spaced_years])
+
 
 plt.show()
