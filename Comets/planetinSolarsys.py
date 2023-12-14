@@ -1,5 +1,7 @@
 """
 Calculate distance between earth and plannets
+
+pip install skyfield
 """
 
 from skyfield.api import load, Topos
@@ -23,6 +25,10 @@ planets = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune]
 
 ts = load.timescale()
 current_time = ts.now()
+
+current_time_iso = current_time.utc_jpl()
+print(current_time_iso)
+
 
 earth_position = (eph['earth'] + observer).at(current_time).position.au
 

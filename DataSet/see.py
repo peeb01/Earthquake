@@ -21,28 +21,28 @@ ndt = df[['time','latitude','longitude','mag','depth']]
 ndt = ndt[(ndt['mag']>=2) & (ndt['latitude']<= 30.449) &(ndt['latitude']>=-15.284) & (ndt['longitude']>=80.97) & (ndt['longitude']<=156.797)]
 # ndt = ndt[(ndt['mag']>=4) &(ndt['latitude']<= 20.920) &(ndt['latitude']>=5.6400) & (ndt['longitude']>=96) & (ndt['longitude']<=107)]
 
-
-ndt['time'] = pd.to_datetime(ndt['time'])
-
-
-min_year = ndt['time'].dt.year.min()
-max_year = ndt['time'].dt.year.max()
-equally_spaced_years = np.linspace(min_year, max_year, max_year - min_year + 1)
+print(len(ndt))
+# ndt['time'] = pd.to_datetime(ndt['time'])
 
 
-fig = plt.figure()
-ax = fig.add_subplot(projection='3d')
+# min_year = ndt['time'].dt.year.min()
+# max_year = ndt['time'].dt.year.max()
+# equally_spaced_years = np.linspace(min_year, max_year, max_year - min_year + 1)
 
 
-ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='^')
-
-ax.set_xlabel('Longitude')
-ax.set_ylabel('Time')  
-ax.set_zlabel('Latitude')
+# fig = plt.figure()
+# ax = fig.add_subplot(projection='3d')
 
 
-ax.set_yticks(equally_spaced_years)
-ax.set_yticklabels([str(int(year)) for year in equally_spaced_years])
+# ax.scatter(ndt['longitude'], ndt['time'].dt.year, ndt['latitude'], marker='o')
+
+# ax.set_xlabel('Longitude')
+# ax.set_ylabel('Time')  
+# ax.set_zlabel('Latitude')
 
 
-plt.show()
+# ax.set_yticks(equally_spaced_years)
+# ax.set_yticklabels([str(int(year)) for year in equally_spaced_years])
+
+# plt.show()
+
