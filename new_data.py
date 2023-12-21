@@ -1,14 +1,10 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import numpy as np
 import os
 
 cwd = os.getcwd()
+
+
 datapath = cwd + "\\DataSet\\DATASET.csv"
-
-
-df = pd.read_csv(datapath)
 df = pd.read_csv(datapath)
 df['time'] = pd.to_datetime(df['time'], errors='coerce')
 dt_time = df['time'].dt.strftime("%Y-%m-%d %H:%M")
