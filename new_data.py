@@ -27,8 +27,7 @@ print(neo.head())
 print(dt_time.head())
 print(neo_time.head())
 
-columname = ['time','latitude','longitude','mag','depth', 'dist', 'dist_min', 'dist_max']
-arr = []
 
-
+# column i want 
+columname = ['time','latitude','longitude','mag','depth', 'dist', 'dist_min','dist_max', 'v_re', 'h']
 
