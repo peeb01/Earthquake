@@ -27,12 +27,12 @@ The dataset all Near-Earth Object moving closer to the earth from [ 1950 to 2050
 - Kasamakarn Tiprangsri
 - Kitipong Saiyot
 
-| --------------- | ------------------- | ----- | ----------------------------- |
-|       Time      |     To Do           |       |     Who is doing
+
+|       Time      |     To Do           |  Corected |     Who is doing
 | --------------- | ------------------- | ----- | ----------------------------- |
 |   2023-10-01    |  Got Dateset Equake |   /   |   Kitipons x Kasimakarn       |
 |   2023-10-23    |  Got NEOs Dataset   |   /   |   Kitipong                    |                    
 |   2023-11-26    |Plot dataset in graph|   /   |   Kitipong                    |
 |   2023-12-21    | Concatinate Dataset |   x   |   Kasamakarn                  |
-| --------------- | ------------------- | ----- | ----------------------------- |
+
 
