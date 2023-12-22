@@ -1,32 +1,37 @@
-# Earthquake dataset: 
+## Who is Member in this Senior Preject
+- Kitipong Saiyot
+- Kasamakarn Tiprangsri
+
+
+
+
+### Earthquake dataset: 
 Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
-#### from:
+##### from:
 - https://earthquake.usgs.gov/earthquakes/search/
 
-#### Earthquake column name:
+##### Earthquake column name:
 - https://earthquake.usgs.gov/data/comcat/
 
 
 
-# NEOs dataset:
+### NEOs dataset:
 The dataset all Near-Earth Object moving closer to the earth from [ 1950 to 2050 ].
-#### from:
+##### from:
 - https://cneos.jpl.nasa.gov/ca/
 
 - using APIs:
 - https://ssd-api.jpl.nasa.gov/cad.api?dist-max=10LD&date-min=1950-01-01&date-max=2050-01-01&sort=dist
 
-#### NEOs column name
+##### NEOs column name
 - https://ssd-api.jpl.nasa.gov/doc/cad.html
 
 
 
 
-# What we do
-#### Who is doing this Senior Project?
-- Kasamakarn Tiprangsri
-- Kitipong Saiyot
 
+
+### To doing.
 
 |       Time      |     To Do           |  Completed? |     Who is doing
 | --------------- | ------------------- | ----- | ----------------------------- |
