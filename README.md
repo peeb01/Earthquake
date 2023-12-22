@@ -1,8 +1,9 @@
 ## Who is Member in this Senior Preject
+#### Student.
 - Kitipong Saiyot
 - Kasamakarn Tiprangsri
-
-
+#### Adviser
+- Dr.
 
 
 ### Earthquake dataset: 
