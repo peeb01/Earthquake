@@ -43,7 +43,7 @@ model.add(tf.keras.layers.Dense(2, activation = tf.keras.activations.softmax))
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
-model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=1, batch_size=32, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
+model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=40, batch_size=16, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
 
 test_loss, test_mae = model.evaluate(test[['year','month','day','hour','minute','second']], test[['latitude', 'longitude']])
 
