@@ -1,10 +1,5 @@
-## Who is Member in this Senior Preject
-#### Student.
-- Kitipong Saiyot
-- Kasamakarn Tiprangsri
-#### Adviser
-- Dr.
-
+# Estimate Time Complete.
+- - August 2024
 
 ### Earthquake dataset: 
 Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
