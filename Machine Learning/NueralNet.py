@@ -41,15 +41,16 @@ model.add(tf.keras.layers.Dense(64, activation = tf.keras.activations.softmax))
 model.add(tf.keras.layers.Dense(32, activation = tf.keras.activations.softmax))
 model.add(tf.keras.layers.Dense(2, activation = tf.keras.activations.softmax))  
 
-model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
 
-model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=30, batch_size=16, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
+model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=30, batch_size=32, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
 
-test_loss, test_mae = model.evaluate(test[['year','month','day','hour','minute','second']], test[['latitude', 'longitude']])
-
-print(f"Test Loss: {test_loss}, Test MAE: {test_mae}")
+test_loss, test_mse = model.evaluate(test[['year','month','day','hour','minute','second']], test[['latitude', 'longitude']])
 model.save('my_model.h5')
-print(f"Test Loss: {test_loss}, Test MAE: {test_mae}")
+
+print(f"Test Loss: {test_loss}, Test MSE: {test_mse}")
+
+print(f"Test Loss: {test_loss}, Test MSE: {test_mse}")
 
 predictions = model.predict(test[['year', 'month', 'day', 'hour', 'minute', 'second']])
 
