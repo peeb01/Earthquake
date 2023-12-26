@@ -30,7 +30,7 @@ ndt = ndt[['year','month','day','hour','minute','second','latitude', 'longitude'
 scaler = MinMaxScaler()
 ndt[['latitude', 'longitude']] = scaler.fit_transform(ndt[['latitude', 'longitude']])
 
-train, test_validate = train_test_split(ndt, test_size=0.3, random_state=42)
+train, test_validate = train_test_split(ndt, test_size=0.2, random_state=42)
 test, validate = train_test_split(test_validate, test_size=0.5, random_state=42)
 
 
@@ -43,7 +43,7 @@ model.add(tf.keras.layers.Dense(2, activation = tf.keras.activations.softmax))
 
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
 
-model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=40, batch_size=16, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
+model.fit(train[['year','month','day','hour','minute','second']], train[['latitude', 'longitude']], epochs=30, batch_size=16, validation_data=(validate[['year','month','day','hour','minute','second']], validate[['latitude', 'longitude']]))
 
 test_loss, test_mae = model.evaluate(test[['year','month','day','hour','minute','second']], test[['latitude', 'longitude']])
 
