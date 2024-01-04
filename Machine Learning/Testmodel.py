@@ -38,6 +38,8 @@ test, validate = train_test_split(test_validate, test_size=0.5, random_state=42)
 model = load_model(cwd + '\my_model.h5')
 
 predictions = model.predict(test[['year', 'month', 'day', 'hour', 'minute', 'second']])
+print(predictions)
+
 
 plt.scatter(test['year'], predictions[:, 0], label='Predicted Latitude', alpha=0.5)
 plt.scatter(test['year'], test['latitude'], label='Actual Latitude', alpha=0.5)
