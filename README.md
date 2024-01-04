@@ -1,6 +1,3 @@
-# Estimate Time Complete.
-- - August 2025
-
 ### Earthquake dataset: 
 Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
 ##### from:
@@ -21,19 +18,5 @@ The dataset all Near-Earth Object moving closer to the earth from [ 1950 to 2050
 
 ##### NEOs column name
 - https://ssd-api.jpl.nasa.gov/doc/cad.html
-
-
-
-
-
-
-### To doing.
-
-|       Time      |     To Do           |  Completed? |     Who is doing
-| --------------- | ------------------- | ----- | ----------------------------- |
-|   2023-10-01    |  Got Dateset Equake |   /   |   Kitipons x Kasimakarn       |
-|   2023-10-23    |  Got NEOs Dataset   |   /   |   Kitipong                    |                    
-|   2023-11-26    |Ploting dataset in graph to see a sequence of earthquake.|   /   |   Kitipong                    |
-|   2023-12-21    | Concatinate Dataset |   x   |   Kasamakarn                  |
 
 
