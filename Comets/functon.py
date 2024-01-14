@@ -24,43 +24,43 @@ class PositionCalculator:
                         'Bennu', 'Itokawa', '-64', 'Apophis', 'Ryugu', '-122911', 'Patroclus', 
                         '90000855', 'Dinkinesh', '20065803' , 'Gaspra', 'Ceres']
 
-    # @lru_cache(maxsize=None)
-    # def query_horizons(self, obj, epoch):
-    #     query = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
-    #     table = query.vectors(refplane='earth')
-    #     return table
-    # def positions_normal(self, times):
-    #     """
-    #     Args:
-    #         times: List of times in UTC format yyyy-mm-dd hh:mm:ss
+    @lru_cache(maxsize=None)
+    def query_horizons(self, obj, epoch):
+        query = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
+        table = query.vectors(refplane='earth')
+        return table
+    def positions_normal(self, times):
+        """
+        Args:
+            times: List of times in UTC format yyyy-mm-dd hh:mm:ss
 
-    #     Returns:
-    #         results: DataFrame with columns ['Time', 'Object0_X', 'Object0_Y', 'Object0_Z', 'Object1_X', 'Object1_Y', ...]
-    #     """
-    #     results = []
+        Returns:
+            results: DataFrame with columns ['Time', 'Object0_X', 'Object0_Y', 'Object0_Z', 'Object1_X', 'Object1_Y', ...]
+        """
+        results = []
 
-    #     for time in times:
-    #         row = [time]
-    #         for obj in self.object_planet:
-    #             try:
-    #                 epoch = Time(time)
-    #                 table = self.query_horizons(obj, epoch)
-    #                 coordinates = SkyCoord(table['x'].quantity, table['y'].quantity, table['z'].quantity,
-    #                                        representation_type='cartesian', frame='icrs', obstime=epoch)
-    #                 result_str = str(coordinates)
-    #                 matches = re.findall(r'-?\d+\.\d+', result_str)
-    #                 result_list = [float(match) for match in matches]
-    #             except Exception as e:
-    #                 # print(f"Error for {obj} at time {time}: {e}")
-    #                 result_list = [99, 99, 99]
+        for time in times:
+            row = [time]
+            for obj in self.object_planet:
+                try:
+                    epoch = Time(time)
+                    table = self.query_horizons(obj, epoch)
+                    coordinates = SkyCoord(table['x'].quantity, table['y'].quantity, table['z'].quantity,
+                                           representation_type='cartesian', frame='icrs', obstime=epoch)
+                    result_str = str(coordinates)
+                    matches = re.findall(r'-?\d+\.\d+', result_str)
+                    result_list = [float(match) for match in matches]
+                except Exception as e:
+                    # print(f"Error for {obj} at time {time}: {e}")
+                    result_list = [99, 99, 99]
 
-    #             row += result_list
+                row += result_list
 
-    #         results.append(row)
+            results.append(row)
 
-    #     columns = ['Time'] + [f'{obj}_{coord}' for obj in self.object_planet for coord in ['X', 'Y', 'Z']]
-    #     results_df = pd.DataFrame(results, columns=columns)
-    #     return results_df
+        columns = ['Time'] + [f'{obj}_{coord}' for obj in self.object_planet for coord in ['X', 'Y', 'Z']]
+        results_df = pd.DataFrame(results, columns=columns)
+        return results_df
     
 
     def positions_parallel(self, times):
