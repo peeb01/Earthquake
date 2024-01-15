@@ -74,7 +74,7 @@ class PositionCalculator:
         row = [time]
         for obj in self.object_planet:
             try:
-                epoch = Time(time)
+                epoch = Time(str(time))
                 query = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
                 table = query.vectors(refplane='earth')
                 coordinates = SkyCoord(table['x'].quantity, table['y'].quantity, table['z'].quantity,
@@ -90,6 +90,7 @@ class PositionCalculator:
 
         columns = ['Time'] + [f'{obj}_{coord}' for obj in self.object_planet for coord in ['X', 'Y', 'Z']]
         return pd.DataFrame([row], columns=columns)
+    
 
 class Position:
 
