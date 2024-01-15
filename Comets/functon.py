@@ -6,14 +6,13 @@ import multiprocessing
 import traceback
 import asyncio
 import concurrent.futures
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 import pandas as pd
 from astropy.coordinates import SkyCoord
 from astropy.time import Time
 from astroquery.jplhorizons import Horizons
-
 
 
 class PositionCalculator:
@@ -23,6 +22,43 @@ class PositionCalculator:
                         'Leucus', 'Eurybates','Polymele', 'Vesta', 'Mathilde', 'Lutetia', 'Donaldjohanson','Braille', 'Annefrank', 
                         'Bennu', 'Itokawa', '-64', 'Apophis', 'Ryugu', '-122911', 'Patroclus', 
                         '90000855', 'Dinkinesh', '20065803' , 'Gaspra', 'Ceres']
+
+    def positions_parallel(self, times):
+        results = []
+        with ThreadPoolExecutor() as executor:
+            futures = {executor.submit(self.calculate_position_single, time, obj): (time, obj) for time in times for obj in self.object_planet}
+
+            for future in as_completed(futures):
+                time, obj = futures[future]
+                try:
+                    result = future.result()
+                    results.append(result)
+                except Exception as e:
+                    # Handle exception for the specific time and object
+                    print(f"Error for object {obj} at time {time}: {e}")
+
+        df = pd.concat(results, ignore_index=True)
+        df['Object_Name'] = pd.Categorical(df['Object_Name'], categories=self.object_planet, ordered=True)
+        df.sort_values(['Time', 'Object_Name'], inplace=True)
+        df.reset_index(drop=True, inplace=True)
+        return df
+
+    def calculate_position_single(self, time, obj):
+        try:
+            epoch = Time(str(time))
+            query = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
+            table = query.vectors(refplane='earth')
+            coordinates = SkyCoord(table['x'].quantity, table['y'].quantity, table['z'].quantity,
+                                   representation_type='cartesian', frame='icrs', obstime=epoch)
+            result_str = str(coordinates)
+            matches = re.findall(r'-?\d+\.\d+', result_str)
+            result_list = [float(match) for match in matches]
+        except Exception as e:
+            # print(f"Error for {obj} at time {time}: {e}")
+            result_list = [99, 99, 99]
+
+        return pd.DataFrame([[time, obj] + result_list], columns=['Time', 'Object_Name', 'X', 'Y', 'Z'])
+    
 
     @lru_cache(maxsize=None)
     def query_horizons(self, obj, epoch):
@@ -63,34 +99,7 @@ class PositionCalculator:
         return results_df
     
 
-    def positions_parallel(self, times):
-        results = []
-        with ThreadPoolExecutor() as executor:
-            futures = [executor.submit(self.calculate_position_single, time) for time in times]
-            results = [future.result() for future in futures]
-        return pd.concat(results, ignore_index=True)
 
-    def calculate_position_single(self, time):
-        row = [time]
-        for obj in self.object_planet:
-            try:
-                epoch = Time(str(time))
-                query = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
-                table = query.vectors(refplane='earth')
-                coordinates = SkyCoord(table['x'].quantity, table['y'].quantity, table['z'].quantity,
-                                       representation_type='cartesian', frame='icrs', obstime=epoch)
-                result_str = str(coordinates)
-                matches = re.findall(r'-?\d+\.\d+', result_str)
-                result_list = [float(match) for match in matches]
-            except Exception as e:
-                # print(f"Error for {obj} at time {time}: {e}")
-                result_list = [99, 99, 99]
-
-            row += result_list
-
-        columns = ['Time'] + [f'{obj}_{coord}' for obj in self.object_planet for coord in ['X', 'Y', 'Z']]
-        return pd.DataFrame([row], columns=columns)
-    
 
 class Position:
 
