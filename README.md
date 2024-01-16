@@ -1,3 +1,7 @@
+#### Trainning DataSet
+###### CSV DATA Object and Earthquake
+- https://drive.google.com/file/d/10XRjRMWFywMaR9T0arIh6tZz3B0NcZtz/view?usp=sharing
+
 ### Earthquake dataset: 
 Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
 ##### from:
@@ -24,3 +28,5 @@ The dataset all Near-Earth Object moving closer to the earth from [ 1950 to 2050
 - https://astroquery.readthedocs.io/en/latest/jplhorizons/jplhorizons.html
 ###### SkyCoord
 - https://docs.astropy.org/en/latest/api/astropy.coordinates.SkyCoord.html#astropy.coordinates.SkyCoord
+
+
