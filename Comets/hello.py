@@ -93,33 +93,3 @@ data = calculator.positions_parallel(time[7000:])
 data.to_csv('data7.csv')
 
 print(data)
-
-# rl = []
-# class Main(Thread):
-#     def __init__(self, i):
-#         super().__init__()
-#         self.i = i
-#     def run(self):
-#         lq = []
-#         for t in time:
-#             try:
-#                 ls = calculate_position(object_plannet[self.i], t)
-#                 lq += ls
-#             except Exception as e:
-#                 # print(f"Error calculating position for object {i} at time {t}: {e}")
-#                 lq += [99,99,99]
-#         rl.append(lq)
-
-# columns = ['Time'] + [f'{obj}_{coord}' for obj in object_plannet for coord in ['X', 'Y', 'Z']]
-
-# for i in range(len(object_plannet)):
-#     Main(i).start()
-#     results = rl
-#     results_df = pd.DataFrame(results, columns=columns)
-#     results_df.to_csv('file_data_asteroid.csv')
-
-
-# results = rl
-# print(rl)
-# results_df = pd.DataFrame(results, columns=columns)
-# results_df.to_csv('file_data_asteroid101.csv')
