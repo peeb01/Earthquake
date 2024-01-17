@@ -53,7 +53,6 @@ df = df[(df['X'] == 99) & (df['Y'] == 99) & (df['Z'] == 99) & (~df['Object_Name'
 num_threads = 8
 chunks = np.array_split(df, num_threads)
 
-# Process each part concurrently using 8 threads
 with ThreadPoolExecutor(max_workers=num_threads) as executor:
     results = list(executor.map(process_chunk, chunks))
 
