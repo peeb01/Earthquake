@@ -72,7 +72,7 @@ for result in rl:
     results_df = pd.concat([results_df, pd.DataFrame([result], columns=columns)], ignore_index=True)
 
 # Save the DataFrame to a CSV file
-results_df.to_csv('file_data_asteroid.csv', index=False)
+# results_df.to_csv('file_data_asteroid.csv', index=False)
 
 
 # results = rl

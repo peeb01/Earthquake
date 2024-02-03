@@ -9,56 +9,63 @@ from astropy.time import Time
 from astroquery.jplhorizons import Horizons
 
 
-df = pd.read_csv('D:\Project\Earthquake\Comets\\raw_asteroid\AsteroidCT.csv')
-df['Time'] = pd.to_datetime(df['Time'])
 
 
-object_planet = ['SUN', '199', '299', '399', '301', '-74', '599', '699', '433', 'Eros', 'Orus', '-49',
-                       '-490', '-255', '2000016', '90000188', '90000190', '90000191', 
-                        'Leucus', 'Eurybates','Polymele', 'Vesta', 'Mathilde', 'Lutetia', 'Donaldjohanson','Braille', 'Annefrank', 
-                        'Bennu', 'Itokawa', '-64', 'Apophis', 'Ryugu', '-122911', 'Patroclus', 
-                        '90000855', 'Dinkinesh', '20065803' , 'Gaspra', 'Ceres']
-
-def calculate_position(obj, time):
-    """
-    Args: 
-        obj: obj name str
-        time: time (utc) format yyyy-mm-dd
-    """
+def calculate_position(obj_list, time):
     try:
         epoch = Time(time)
-        q = Horizons(obj, location='@0', epochs=epoch.tdb.jd)
-        tab = q.vectors(refplane='earth')
-        c = SkyCoord(tab['x'].quantity, tab['y'].quantity, tab['z'].quantity,
-                     representation_type='cartesian', frame='icrs',
-                     obstime=epoch)
-        result = str(c)
-        matches = re.findall(r'-?\d+\.\d+', result)
-        result_list = [float(match) for match in matches]
-        return result_list
+        positions = []
+        for obj_name in obj_list:
+            q = Horizons(obj_name, location='@0', epochs=epoch.tdb.jd)
+            tab = q.vectors(refplane='earth')
+            c = SkyCoord(tab['x'].quantity, tab['y'].quantity, tab['z'].quantity,
+                         representation_type='cartesian', frame='icrs',
+                         obstime=epoch)
+
+            x = c.cartesian.x.value
+            y = c.cartesian.y.value
+            z = c.cartesian.z.value
+
+            positions.extend([x, y, z])
+
+        return positions
+
     except Exception as e:
-        print(f"Error calculating position for object {obj} at time {time}")
-        return [99,99,99]
+        # print(f"Error calculating positions at time {time}")
+        return [99] * (len(obj_list) * 3)
 
-no_use = ['-74', '-49','-49', '-490', '-255' , '2000016', '20065803', '-64']
+def process_chunk(chunk, object_planet):
+    positions = chunk.apply(lambda row: pd.Series(calculate_position(object_planet, row['Time'])), axis=1)
 
-def process_chunk(chunk):
-    chunk[['X_new', 'Y_new', 'Z_new']] = chunk.apply(
-        lambda row: pd.Series(calculate_position(row['Object_Name'], row['Time'])), axis=1)
+    # Unpack positions into separate columns with a different naming convention
+    for i, obj_name in enumerate(object_planet):
+        chunk[f'{obj_name}_new_x'] = positions[i * 3]
+        chunk[f'{obj_name}_new_y'] = positions[i * 3 + 1]
+        chunk[f'{obj_name}_new_z'] = positions[i * 3 + 2]
+
     return chunk
 
+object_planet = ['SUN', '199', '299', '399', '301', '599', '699', '433', 'Eros', 'Orus',
+                 'Leucus', 'Eurybates', 'Polymele', 'Vesta', 'Mathilde', 'Lutetia', 
+                 'Donaldjohanson', 'Braille', 'Annefrank', 'Bennu', 'Itokawa', 'Apophis',
+                 'Ryugu', 'Patroclus', '90000855', 'Dinkinesh', 'Gaspra', 'Ceres']
 
-df = df[(df['X'] == 99) & (df['Y'] == 99) & (df['Z'] == 99) & (~df['Object_Name'].isin(no_use))]
+def main():
+    # df = pd.read_csv('D:\Earthquake\Machine Learning Model\DataSetJP.csv')
+    df = pd.read_csv('D:\Earthquake\Comets\\raw_asteroid\DATA TRASH\CLEAR101_P4.csv')
+    df['Time'] = pd.to_datetime(df['Time'])
 
-num_threads = 8
-chunks = np.array_split(df, num_threads)
+    no_use = ['-74', '-49', '-490', '-255', '2000016', '20065803', '-64']
+    df = df[(~df['Object_Name'].isin(no_use))]
 
-with ThreadPoolExecutor(max_workers=num_threads) as executor:
-    results = list(executor.map(process_chunk, chunks))
+    num_threads = 8
+    chunks = np.array_split(df, num_threads)
+
+    with ThreadPoolExecutor(max_workers=num_threads) as executor:
+        results = list(executor.map(process_chunk, chunks, [object_planet]*num_threads))
+
+    df = pd.concat(results, ignore_index=True)
+    df.to_csv('HELPJME.csv', index=False)
 
 
-df = pd.concat(results)
-
-df.to_csv('CLEAR1.csv', index=False)
-
-
+main()

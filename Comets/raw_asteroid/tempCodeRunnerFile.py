@@ -1,21 +1,14 @@
 import pandas as pd
+import re
+from concurrent.futures import ThreadPoolExecutor
+
 import numpy as np
+import pandas as pd
+from astropy.coordinates import SkyCoord
+from astropy.time import Time
+from astroquery.jplhorizons import Horizons
 
 
-
-df = pd.read_csv('D:\Project\Earthquake\Comets\\raw_asteroid\AsteroidPositionFinal.csv')
-
-# print(df[['Time', 'X', 'Y', 'Z']])
-
-
-# print(df)
-
-object_planet = ['SUN', '199', '299', '399', '301', '599', '699', '433', 'Eros', 'Orus', '90000188', '90000190', '90000191', 
-                        'Leucus', 'Eurybates','Polymele', 'Vesta', 'Mathilde', 'Lutetia', 'Donaldjohanson','Braille', 'Annefrank', 
-                        'Bennu', 'Itokawa', 'Apophis', 'Ryugu', '-122911', 'Patroclus', 
-                        '90000855', 'Dinkinesh','Gaspra', 'Ceres']
-
-
-
-print(print(len(object_planet)*3))
-
+df = pd.read_csv('D:\Project\Earthquake\Comets\\raw_asteroid\AsteroidCT.csv')
+df['Time'] = pd.to_datetime(df['Time'])
+print(df)
