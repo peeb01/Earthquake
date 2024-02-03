@@ -1,7 +1,7 @@
 #### Trainning DataSet
 ###### CSV DATA Object and Earthquake
 - https://drive.google.com/file/d/10XRjRMWFywMaR9T0arIh6tZz3B0NcZtz/view?usp=sharing
-
+- https://drive.google.com/drive/folders/1bXI6KXLo0WbmE-qEZpcL9YDCxehaAxht?usp=sharing
 ### Earthquake dataset: 
 Earthquake Location dateset from 1950-09-24 to [ 2023-10-02 ].
 ##### from:
