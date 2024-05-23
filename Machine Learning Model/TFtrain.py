@@ -1,12 +1,17 @@
-import tensorflow as tf
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+from pyspark.sql import SparkSession
+import warnings
+
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore")
 
 
-path = 'D:\DataSet\DATASET_UPDATE_TO_ML.csv'
+spark = SparkSession.builder \
+    .appName("Read CSV with PySpark") \
+    .getOrCreate()
 
-df = pd.read_csv(path)
+csv_file_path = "DATASET_STORE\\UPDATE DATASET_1.csv"
 
+df = spark.read.csv(csv_file_path, header=True, inferSchema=True)
 
-print(df.head(10))
+df = df.toPandas()
+print(df.head())
